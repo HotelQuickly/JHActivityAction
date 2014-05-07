@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JHPanelView.h"
+#import "JHActivity.h"
 
 typedef NS_ENUM(NSInteger, JHIconSize)
 {

@@ -7,7 +7,6 @@
 //
 
 #import "JHActivityAction.h"
-#import "JHActivity.h"
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
