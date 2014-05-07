@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
-  s.name          = "AAActivityAction"
-  s.version       = "1.0.2"
-  s.summary       = "Reeder like action sheet."
-  s.homepage      = "https://github.com/r-plus/AAActivityAction/"
+  s.name          = "JHActivityAction"
+  s.version       = "1.0.0"
+  s.summary       = "Action sheet menu with page Control and customizable"
+  s.homepage      = "https://github.com/kazekim/JHActivityAction/"
   s.license       = 'MIT'
-  s.author        = { "r-plus" => "anasthasia.r@gmail.com" }
-  s.source        = { :git => "https://github.com/r-plus/AAActivityAction.git", :tag => s.version.to_s }
-  s.platform      = :ios, '5.0'
-  s.source_files  = 'AAActivityAction/*.{h,m}'
+  s.author        = { "Jirawat Harnsiriwatanakit" => "jirawat.h@kazekim.com" }
+  s.source        = { :git => "https://github.com/kazekim/JHActivityAction.git", :tag => s.version.to_s }
+  s.platform      = :ios, '7.0'
+  s.source_files  = 'JHActivityAction/*.{h,m}'
   s.requires_arc  = true
   s.framework     = 'QuartzCore'
 end
