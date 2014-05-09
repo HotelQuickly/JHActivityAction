@@ -18,6 +18,7 @@ typedef void (^JHActionBlock)(JHActivity *activity, NSArray *avtivityItems);
 @property (copy, nonatomic) JHActionBlock actionBlock;
 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image actionBlock:(JHActionBlock)actionBlock;
+- (id)initWithImage:(UIImage *)image actionBlock:(JHActionBlock)actionBlock;
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems;
 
 @end

@@ -334,10 +334,10 @@ static CGFloat const kPageDotHeight = 20.0f;
 #pragma mark dimension
 -(CGFloat)titleHeight
 {
-    if(self.isDisableTitle){
+    if(!self.isDisableTitle){
         return kTitleHeight;
     }else{
-        return 10;
+        return 15;
     }
 }
 

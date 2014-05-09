@@ -21,6 +21,16 @@
     return self;
 }
 
+- (id)initWithImage:(UIImage *)image actionBlock:(JHActionBlock)actionBlock
+{
+    self = [super init];
+    if (self) {
+        _image = [image copy];
+        _actionBlock = [actionBlock copy];
+    }
+    return self;
+}
+
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems
 {
     return YES;
