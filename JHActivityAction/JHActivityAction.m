@@ -34,7 +34,7 @@
     UIPageControl *_pageControl;
 }
 
-static CGFloat const kTitleHeight = 45.0f;
+static CGFloat const kTitleHeight = 30.0f;
 static CGFloat const kPanelViewBottomMargin = 0.0f;
 static CGFloat const kPanelViewSideMargin = 0.0f;
 static CGFloat const kPageDotHeight = 20.0f;
