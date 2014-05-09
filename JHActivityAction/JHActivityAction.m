@@ -101,7 +101,7 @@ static CGFloat const kPageDotHeight = 20.0f;
         [self addSubview:baseView];
         
         NSUInteger rowsCount = [self numberOfRowFromCount:[_activities count]];
-        CGFloat height = self.rowHeight * rowsCount + kTitleHeight;
+        CGFloat height = self.rowHeight * rowsCount + [self titleHeight];
         CGRect baseRect = CGRectMake(0, baseView.frame.size.height - height - kPanelViewBottomMargin, baseView.frame.size.width, height);
         _panelView = [[JHPanelView alloc] initWithFrame:baseRect];
         _panelView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin);
@@ -110,7 +110,7 @@ static CGFloat const kPageDotHeight = 20.0f;
         _panelView.frame = frame;
         
         CGRect scrollViewRect = CGRectInset(_panelView.bounds, 10, 5);
-        scrollViewRect.size.height -= kTitleHeight - kPageDotHeight;
+        scrollViewRect.size.height -= [self titleHeight] - kPageDotHeight;
         _scrollView = [[UIScrollView alloc] initWithFrame:scrollViewRect];
         _scrollView.delegate = self;
         _scrollView.pagingEnabled = YES;
@@ -209,10 +209,10 @@ static CGFloat const kPageDotHeight = 20.0f;
 {
     //// re-layouting panelView.
     NSUInteger rowsCount = [self numberOfRowFromCount:[_activities count]];
-    CGFloat height = self.rowHeight * rowsCount + kTitleHeight;
+    CGFloat height = self.rowHeight * rowsCount + [self titleHeight];
     while (height >= _panelView.superview.bounds.size.height - 40.0f) {
         rowsCount--;
-        height = self.rowHeight * rowsCount + kTitleHeight;
+        height = self.rowHeight * rowsCount + [self titleHeight];
     }
     _panelView.frame = CGRectMake(0, _panelView.superview.frame.size.height - height - kPanelViewBottomMargin, _panelView.superview.frame.size.width, height);
     _pageControl.frame = CGRectMake(0, _panelView.frame.size.height - kPanelViewBottomMargin - kTitleHeight, _panelView.frame.size.width, kPageDotHeight);
@@ -329,6 +329,16 @@ static CGFloat const kPageDotHeight = 20.0f;
     CGFloat pageWidth = _scrollView.contentSize.width /_pageControl.numberOfPages;
     CGFloat x = _pageControl.currentPage * pageWidth;
     [_scrollView scrollRectToVisible:CGRectMake(x, 0, pageWidth, _scrollView.frame.size.height) animated:YES];
+}
+
+#pragma mark dimension
+-(CGFloat)titleHeight
+{
+    if(self.isDisableTitle){
+        return kTitleHeight;
+    }else{
+        return 10;
+    }
 }
 
 @end

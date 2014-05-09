@@ -22,6 +22,8 @@ typedef NS_ENUM(NSInteger, JHIconSize)
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, readonly) BOOL isShowing;
 
+@property (nonatomic, assign) BOOL isDisableTitle;
+
 - (id)initWithActivityItems:(NSArray *)activityItems applicationActivities:(NSArray *)applicationActivities imageSize:(JHIconSize)imageSize;
 // Attempt automatically use top of hierarchy view.
 - (void)show;
