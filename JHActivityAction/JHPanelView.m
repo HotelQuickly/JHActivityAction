@@ -60,7 +60,39 @@
                                 CGPointMake(CGRectGetMidX(roundedRectBounds), CGRectGetMaxY(roundedRectBounds)),
                                 0);
     CGContextEndTransparencyLayer(context);
+ 
+    if(self.title != nil){
+        //// Upper line of title
+        UIBezierPath *titleSeparateLinePath = [UIBezierPath bezierPath];
+        [titleSeparateLinePath moveToPoint:CGPointMake(CGRectGetMaxX(panelFrame), CGRectGetMaxY(panelFrame) - 25.0)];
+        [titleSeparateLinePath addLineToPoint:CGPointMake(CGRectGetMinX(panelFrame), CGRectGetMaxY(panelFrame) - 25.0)];
+        [titleSeparateLinePath closePath];
+        CGContextSetShadowWithColor(context, CGSizeMake(0, -1), 0, [UIColor blackColor].CGColor);
+        [[UIColor colorWithWhite:0.7 alpha:0.3] setStroke];
+        titleSeparateLinePath.lineWidth = 0.4;
+        [titleSeparateLinePath stroke];
+        
+        //// Draw title
+        UIFont *font = [UIFont systemFontOfSize:12.0];
+        CGSize strSize = [self.title sizeWithAttributes:@{NSFontAttributeName:font}];
+        CGRect titleRect = CGRectMake(panelFrame.origin.x + 10.0, panelFrame.size.height - 15.0, panelFrame.size.width - 20.0, strSize.height);
+        UIColor *fontColor = [UIColor colorWithWhite:0.7 alpha:1.0];
+        NSMutableParagraphStyle *textStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+        textStyle.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        textStyle.alignment = NSTextAlignmentCenter;
+        [self.title drawInRect:titleRect withAttributes:@{NSFontAttributeName:font, NSForegroundColorAttributeName:fontColor, NSParagraphStyleAttributeName:textStyle}];
+        
+        // Add title tap to dissmiss
+        UIButton *titleTapToDissmissControl = [[UIButton alloc] initWithFrame:titleRect];
+        titleTapToDissmissControl.backgroundColor = [UIColor clearColor];
+        titleTapToDissmissControl.showsTouchWhenHighlighted = YES;
+        [titleTapToDissmissControl addTarget:self.delegate action:@selector(dismissActionSheet) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:titleTapToDissmissControl];
+    }
     
+    //// Cleanup
+    CGGradientRelease(lineGradient);
+    CGColorSpaceRelease(colorSpace);
 }
 
 

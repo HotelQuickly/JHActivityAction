@@ -35,12 +35,17 @@
     NSMutableArray *array = [NSMutableArray array];
     
     for (int i=0; i<4; i++) {
-        JHActivity *activity = [[JHActivity alloc] initWithTitle:[@"Safari" stringByAppendingFormat:@"%d", i]
+      /*  JHActivity *activity = [[JHActivity alloc] initWithTitle:[@"Safari" stringByAppendingFormat:@"%d", i]
                                                            image:image
                                                      actionBlock:^(JHActivity *activity, NSArray *activityItems) {
             NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[activityItems objectAtIndex:0]]];
         }];
+       */
+        JHActivity *activity = [[JHActivity alloc] initWithImage:image
+                                                     actionBlock:^(JHActivity *activity, NSArray *activityItems) {
+                                                         NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);
+                                                     }];
         [array addObject:activity];
     }
     

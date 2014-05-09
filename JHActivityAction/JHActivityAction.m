@@ -44,7 +44,7 @@ static CGFloat const kPageDotHeight = 20.0f;
 - (CGFloat)activityWidth
 {
     // iPhone : 29:60
-    //        : 59:90
+    //        : 39:70
     // iPad   : 74:105
     return _imageSize + 1.0f + 30.0f;
 }
@@ -52,9 +52,15 @@ static CGFloat const kPageDotHeight = 20.0f;
 - (CGFloat)rowHeight
 {
     // iPhone : 70
-    //        : 100
+    //        : 80
     // iPad   : 115
-    return self.activityWidth + 10.0f;
+    CGFloat rowHeight = self.activityWidth + 10.0f;
+    
+    if(_imageSize == JHIconSizeNormal){
+        rowHeight += 20.0f;
+    }
+    
+    return rowHeight;
 }
 
 - (NSUInteger)numberOfActivitiesInRow
@@ -161,26 +167,28 @@ static CGFloat const kPageDotHeight = 20.0f;
         button.accessibilityLabel = activity.title;
         button.showsTouchWhenHighlighted = _imageSize == JHIconSizeSmall ? YES : NO;
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, activity.image.size.height + 2.0f, activityWidth, 10.0f)];
-        label.textAlignment = ALIGN_CENTER;
-        label.backgroundColor = [UIColor clearColor];
-        //label.backgroundColor = [UIColor redColor];
-        label.textColor = [UIColor whiteColor];
-        label.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75];
-        label.shadowOffset = CGSizeMake(0, 1);
-        label.text = activity.title;
-        CGFloat fontSize = 11.0f;
-        if (_imageSize == JHIconSizeSmall)
-            fontSize = 12.0f;
-        else if (_imageSize == JHIconSizeiPad)
-            fontSize = 15.0f;
-        label.font = [UIFont systemFontOfSize:fontSize];
-        label.numberOfLines = 0;
-        [label sizeToFit];
-        CGRect frame = label.frame;
-        frame.origin.x = roundf((button.frame.size.width - frame.size.width) / 2.0f);
-        label.frame = frame;
-        [button addSubview:label];
+        if(activity.title != nil){
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, activity.image.size.height + 2.0f, activityWidth, 10.0f)];
+            label.textAlignment = ALIGN_CENTER;
+            label.backgroundColor = [UIColor clearColor];
+            //label.backgroundColor = [UIColor redColor];
+            label.textColor = [UIColor whiteColor];
+            label.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75];
+            label.shadowOffset = CGSizeMake(0, 1);
+            label.text = activity.title;
+            CGFloat fontSize = 11.0f;
+            if (_imageSize == JHIconSizeSmall)
+                fontSize = 12.0f;
+            else if (_imageSize == JHIconSizeiPad)
+                fontSize = 15.0f;
+            label.font = [UIFont systemFontOfSize:fontSize];
+            label.numberOfLines = 0;
+            [label sizeToFit];
+            CGRect frame = label.frame;
+            frame.origin.x = roundf((button.frame.size.width - frame.size.width) / 2.0f);
+            label.frame = frame;
+            [button addSubview:label];
+        }
         
         [_scrollView addSubview:button];
     }
@@ -337,7 +345,7 @@ static CGFloat const kPageDotHeight = 20.0f;
     if(!self.isDisableTitle){
         return kTitleHeight;
     }else{
-        return 15;
+        return 0;
     }
 }
 
