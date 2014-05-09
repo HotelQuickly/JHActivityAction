@@ -52,8 +52,7 @@
     JHActivityAction *aa = [[JHActivityAction alloc] initWithActivityItems:@[@"http://www.apple.com/"]
                                                      applicationActivities:array
                                                                  imageSize:imageSize];
-    aa.title = @"sample title";
-    aa.isDisableTitle = YES;
+//    aa.title = @"sample title";
     [aa show];
 }
 

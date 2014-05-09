@@ -34,10 +34,10 @@
     UIPageControl *_pageControl;
 }
 
-static CGFloat const kTitleHeight = 30.0f;
+static CGFloat const kTitleHeight = 15.0f;
 static CGFloat const kPanelViewBottomMargin = 0.0f;
 static CGFloat const kPanelViewSideMargin = 0.0f;
-static CGFloat const kPageDotHeight = 20.0f;
+static CGFloat const kPageDotHeight = 15.0f;
 
 #pragma mark InternalGetter
 
@@ -55,10 +55,6 @@ static CGFloat const kPageDotHeight = 20.0f;
     //        : 80
     // iPad   : 115
     CGFloat rowHeight = self.activityWidth + 10.0f;
-    
-    if(_imageSize == JHIconSizeNormal){
-        rowHeight += 20.0f;
-    }
     
     return rowHeight;
 }
@@ -279,7 +275,11 @@ static CGFloat const kPageDotHeight = 20.0f;
 
 - (void)showInView:(UIView *)view
 {
-    _panelView.title = [self.title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+    if(self.title != nil){
+        _panelView.title = [self.title stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+        
+    }
+    
     _panelView.delegate = self;
     self.frame = view.bounds;
     [view addSubview:self];
@@ -339,14 +339,21 @@ static CGFloat const kPageDotHeight = 20.0f;
     [_scrollView scrollRectToVisible:CGRectMake(x, 0, pageWidth, _scrollView.frame.size.height) animated:YES];
 }
 
+-(void)setTitle:(NSString *)title
+{
+    
+    if(title != nil){
+        _title = title;
+        self.isDisableTitle = NO;
+    }else{
+        self.isDisableTitle = YES;
+    }
+}
+
 #pragma mark dimension
 -(CGFloat)titleHeight
 {
-    if(!self.isDisableTitle){
-        return kTitleHeight;
-    }else{
-        return 0;
-    }
+    return kTitleHeight;
 }
 
 @end
