@@ -60,7 +60,11 @@
                                 CGPointMake(CGRectGetMidX(roundedRectBounds), CGRectGetMaxY(roundedRectBounds)),
                                 0);
     CGContextEndTransparencyLayer(context);
- 
+    
+    /*
+     // Dont include the bottom title
+     // https://app.asana.com/0/9109931886061/12872430056975
+     
     //// Upper line of title
     UIBezierPath *titleSeparateLinePath = [UIBezierPath bezierPath];
     [titleSeparateLinePath moveToPoint:CGPointMake(CGRectGetMaxX(panelFrame), CGRectGetMaxY(panelFrame) - 25.0)];
@@ -87,6 +91,8 @@
     titleTapToDissmissControl.showsTouchWhenHighlighted = YES;
     [titleTapToDissmissControl addTarget:self.delegate action:@selector(dismissActionSheet) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:titleTapToDissmissControl];
+    
+     */
     
     //// Cleanup
     CGGradientRelease(lineGradient);
