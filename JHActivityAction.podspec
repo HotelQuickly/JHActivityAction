@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name          = "JHActivityAction"
-  s.version       = "1.0.0"
+  s.version       = "1.0.1"
   s.summary       = "Action sheet menu with page Control and customizable"
   s.homepage      = "https://github.com/kazekim/JHActivityAction/"
   s.license       = 'MIT'
