@@ -16,6 +16,9 @@
 # define ALIGN_CENTER UITextAlignmentCenter
 #endif
 
+#define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON)
+#define IS_IPHONE_6_PLUS (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)736) < DBL_EPSILON)
+
 @interface JHActivityAction()
 
 @property (nonatomic, readonly) CGFloat activityWidth;
@@ -36,8 +39,8 @@
 
 static CGFloat const kTitleHeight = 15.0f;
 static CGFloat const kPanelViewBottomMargin = 0.0f;
-static CGFloat const kPanelViewSideMargin = 0.0f;
 static CGFloat const kPageDotHeight = 15.0f;
+static CGFloat kPanelViewSideMargin = 0.0f;
 
 #pragma mark InternalGetter
 
@@ -61,6 +64,10 @@ static CGFloat const kPageDotHeight = 15.0f;
 
 - (NSUInteger)numberOfActivitiesInRow
 {
+    if( IS_IPHONE_6_PLUS ){
+        kPanelViewSideMargin = 45.0f;
+    }
+    
     // FIXME: more easy.
     if (_panelView)
         return (_panelView.frame.size.width - 2 * kPanelViewSideMargin) / self.activityWidth;
@@ -211,6 +218,10 @@ static CGFloat const kPageDotHeight = 15.0f;
 
 - (void)layoutActivities
 {
+    if( IS_IPHONE_6_PLUS ){
+        kPanelViewSideMargin = 45.0f;
+    }
+    
     //// re-layouting panelView.
     NSUInteger rowsCount = [self numberOfRowFromCount:[_activities count]];
     CGFloat height = self.rowHeight * rowsCount + [self titleHeight];
