@@ -66,6 +66,8 @@ static CGFloat kPanelViewSideMargin = 0.0f;
 {
     if( IS_IPHONE_6_PLUS ){
         kPanelViewSideMargin = 45.0f;
+    }else if( IS_IPHONE_6 ){
+        kPanelViewSideMargin = 30.0f;
     }
     
     // FIXME: more easy.
@@ -220,6 +222,8 @@ static CGFloat kPanelViewSideMargin = 0.0f;
 {
     if( IS_IPHONE_6_PLUS ){
         kPanelViewSideMargin = 45.0f;
+    }else if( IS_IPHONE_6 ){
+        kPanelViewSideMargin = 30.0f;
     }
     
     //// re-layouting panelView.
